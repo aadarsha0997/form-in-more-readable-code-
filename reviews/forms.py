@@ -17,7 +17,17 @@ class ReviewForm(forms.ModelForm):
     class Meta:
         model= Review
         #### field=['user_name','review_text' ]####  select which field of model to include in form one by one
-        field='__all__' ### all field of model should be include 
+        fields='__all__' ### all field of model should be include 
         #### exclude=['use_name'] #### which field of modle should be excluded in form
-        labels=
+        labels={
+            'user_name':'Your Name',
+            'review_text':'Your Feedback',
+            'rating':'Your rating',
+        } #### if we didn't assinge label it use model fields as label by defult
+        error_messages={
+            'user_name':{
+                'required':'must not be empty',
+                'max_length':'name must be short',
+            }
+        }
 
