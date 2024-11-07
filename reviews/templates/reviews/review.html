@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static "reviews/styles.css" %}">
+</head>
+<body>
+    <!--
+        Form from raw html and normal without modelbase or formbase class in  form.py
+
+       <form method="POST" action=""> {%comment%}methode indicate it is post/get from server & action mean what url or path to open after form submitted{%endcomment%}
+        {% csrf_token %}
+
+        <label for="username">Your Name</label>
+       <input id="username" name="username" type="text">  {% comment %}  //name is to identify this particular form to save in model or database {% endcomment %}
+       <button type="submit">Send</button> {%comment %} type submit make different beheviour in browser nothing else {%endcomment%}
+       </form>
+    -->
+
+
+    <!--
+   this is how we acess the form field one by one 
+    <form  method="POST">
+        {% csrf_token %}
+        <div class="form-control {% if form.user_name.errors%}errors{%endif%}">
+            
+        {{form.user_name.label_tag}}
+        {{form.user_name}}
+        {{from.user_name.errors}}
+    </div>
+    <div class="form-control {% if form.review_text.errors%}errors{%endif%}">
+        
+    {{form.review_text.label_tag}}
+    {{form.review_text}}
+    {{from.review_text.errors}}
+</div>
+<div class="form-control {% if form.rating.errors%}errors{%endif%}">
+    
+{{form.rating.label_tag}}
+{{form.rating}}
+{{from.rating.errors}}
+</div>
+<button type="submit">Send<buttom> 
+    </form>
+    -->
+    
+    {% comment%} Using above methode but in for loop  {% endcomment %}
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        {% for field in form %}
+        <div class="form-control {%if field.errors%}errors{%endif%}">
+            {{field.label_tag}}
+            {{field}}
+            {{field.errors}}
+        </div>
+        {% endfor %}
+        <button type="submit">Send<buttom> 
+    </form>
+   
+</body>
+</html>
